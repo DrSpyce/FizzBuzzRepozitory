@@ -2,26 +2,40 @@
 
 class FizzBuzz
 {
+    enum FizzBuzzConstants
+    {
+        Fizz,
+        Buzz,
+        Whizz
+    }
+
     static void Main()
     {
         for (int i = 1; i <= 100; i++)
         {
-            if (i % 3 == 0 && i % 5 == 0)
-            {
-                Console.WriteLine("FizzBuzz");
-            }
-            else if (i % 3 == 0)
-            {
-                Console.WriteLine("Fizz");
-            }
-            else if (i % 5 == 0)
-            {
-                Console.WriteLine("Buzz");
-            }
-            else
-            {
-                Console.WriteLine(i);
-            }
+            Console.WriteLine(GetFizzBuzz(i));
         }
     }
+
+    public static string GetFizzBuzz(int number)
+    {
+        string result = string.Empty;
+
+        if (IsDivisibleByThree(number))
+            result += FizzBuzzConstants.Fizz;
+        if (IsDivisibleByFive(number))
+            result += FizzBuzzConstants.Buzz;
+        if (IsDivisibleBySeven(number))
+            result += FizzBuzzConstants.Whizz;
+        if (result.Length == 0)
+            result += number.ToString();
+
+        return result;
+    }
+
+    public static bool IsDivisibleByThree(int num) => num % 3 == 0;
+
+    public static bool IsDivisibleByFive(int num) => num % 5 == 0;
+
+    public static bool IsDivisibleBySeven(int num) => num % 7 == 0;
 }
